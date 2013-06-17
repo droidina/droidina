@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <groupId>be.ordina.fsm</groupId>
-    <artifactId>FieldServiceManagementGAE</artifactId>
+    <artifactId>droidinabackend</artifactId>
 
     <properties>
         <appengine.app.version>1</appengine.app.version>
@@ -294,7 +294,7 @@
     </dependencies>
 
     <build>
-        <finalName>ofsm</finalName>
+        <finalName>droidinabackend</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
