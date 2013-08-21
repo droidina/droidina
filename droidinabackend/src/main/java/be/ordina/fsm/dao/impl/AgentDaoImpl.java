@@ -20,8 +20,12 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.PreparedQuery.TooManyResultsException;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
+import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.datastore.Transaction;
 import com.google.appengine.api.datastore.TransactionOptions;
 
@@ -134,4 +138,23 @@ public class AgentDaoImpl implements AgentDao, EntityMapper<Agent> {
 		return mapEntityToObject(agentEntity);
 	}
 
+	@Override
+	public Agent login(String username, String password) throws TooManyResultsException, EntityNotFoundException{
+		Query logonQuery = new Query(Agent.KIND);
+		
+		FilterPredicate userNameEquality = new Query.FilterPredicate(Agent.USERNAME, FilterOperator.EQUAL, username);
+		FilterPredicate passwordEquality = new Query.FilterPredicate(Agent.PASSWORD, FilterOperator.EQUAL, password);
+		Filter compositeFilter = CompositeFilterOperator.and(userNameEquality, passwordEquality);
+		
+		logonQuery.setFilter(compositeFilter);
+		
+		PreparedQuery preparedQuery = ds.prepare(logonQuery);
+		Entity agentEntity = preparedQuery.asSingleEntity();
+		
+		if(agentEntity!=null){
+			return mapEntityToObject(agentEntity);
+		}else{
+			throw new EntityNotFoundException(null);
+		}
+	}
 }

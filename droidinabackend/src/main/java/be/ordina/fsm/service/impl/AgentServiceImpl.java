@@ -12,6 +12,7 @@ import be.ordina.fsm.domain.Agent;
 import be.ordina.fsm.service.AgentService;
 
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.PreparedQuery.TooManyResultsException;
 
 @Service
 public class AgentServiceImpl implements AgentService{
@@ -62,5 +63,18 @@ public class AgentServiceImpl implements AgentService{
 		} catch (EntityNotFoundException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
+
+	@Override
+	public Agent login(String username, String password) {
+		Agent returnAgent=null;
+		try {
+			returnAgent = agentDao.login(username, password);
+		}catch (EntityNotFoundException entityNotFoundException){
+			entityNotFoundException.printStackTrace();
+		}catch (TooManyResultsException tooManyResultsException){
+			tooManyResultsException.printStackTrace();
+		}
+		return returnAgent;
+	}
 }

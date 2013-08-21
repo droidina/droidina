@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" >Droidina
-    </string>
-    <string name="action_settings" >Settings
-    </string>
-    <string name="hello_world" >Hello world!
-    </string>
+    <string name="app_name">Droidina</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_droidina">Droidina</string>
 
+    <!-- Drawer strings-->
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string-array name="drawer_menu_items">
+        <item>Droidina</item>
+        <item>Field service management</item>
+    </string-array>
+
+    <!-- Droidina String resources -->
+    <string name="login">Login</string>
 </resources>

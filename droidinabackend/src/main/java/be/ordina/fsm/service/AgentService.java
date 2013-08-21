@@ -9,5 +9,6 @@ public interface AgentService {
 	public Agent readAgent(String stringKey);
 	public Agent createAgent(Agent agent);
 	public Agent findAgentByUserName(String username);
+	public Agent login(String username, String password);
 	public void updateAgent(Agent agent);
 }

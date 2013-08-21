@@ -19,7 +19,6 @@ import be.ordina.fsm.domain.Schedule;
 import be.ordina.fsm.service.AgentService;
 import be.ordina.fsm.service.ScheduleService;
 
-
 @Controller
 @RequestMapping("/agents")
 public class AgentController {
@@ -67,7 +66,7 @@ public class AgentController {
 	
 	@RequestMapping(value="/login", method=POST)
 	public @ResponseBody Agent login(@RequestBody Agent agent){
-		Agent loggedOnAgent = agentService.findAgentByUserName(agent.getUserName());
+		Agent loggedOnAgent = agentService.login(agent.getUserName(), agent.getPassword());
 		
 		return loggedOnAgent;
 	}
