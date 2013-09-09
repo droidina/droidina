@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import be.ordina.droidina.R;
 import be.ordina.droidina.fsm.view.SchedulesFragment;
+import be.ordina.droidina.speechengine.SpeechEngineFragment;
 
 /**
  * Created by ordinamobile on 27/06/13.
@@ -89,14 +90,24 @@ public abstract class DrawerActivity extends FragmentActivity {
         // Create a new fragment and specify the planet to show based on position
         String selectedDrawerItem = drawerListItems[position];
         Fragment fragment=null;
-        if("Droidina".equals(selectedDrawerItem)){
-            fragment = MainDroidinaFragment.newInstance();
-            setContentFragment(fragment);
-        }else if("Field service management".equals(selectedDrawerItem)){
-            //Create the Field Service Management fragment and display it...
-            fragment = SchedulesFragment.newInstance();
-            setContentFragment(fragment);
+        switch (position){
+            case 0:
+                fragment = MainDroidinaFragment.newInstance();
+                setContentFragment(fragment);
+                break;
+            case 1:
+                //Create the Field Service Management fragment and display it...
+                fragment = SchedulesFragment.newInstance();
+                setContentFragment(fragment);
+                break;
+            case 2:
+
+                fragment = SpeechEngineFragment.newInstance();
+                setContentFragment(fragment);
+                break;
+
         }
+
 
 //        // Highlight the selected item, update the title, and close the drawer
 //        String title="menuItem"+(position+1);

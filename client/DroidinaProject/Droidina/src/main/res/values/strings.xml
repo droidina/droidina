@@ -12,6 +12,7 @@
     <string-array name="drawer_menu_items">
         <item>Droidina</item>
         <item>Field service management</item>
+        <item>Speech Engine</item>
     </string-array>
 
     <!-- Droidina String resources -->
